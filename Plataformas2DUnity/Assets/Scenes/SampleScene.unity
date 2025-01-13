@@ -311,6 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 145181831}
   - component: {fileID: 145181830}
+  - component: {fileID: 145181832}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -366,13 +367,27 @@ Transform:
   m_GameObject: {fileID: 145181829}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.1, y: 2.12, z: -10}
+  m_LocalPosition: {x: 1.49, y: -1.86, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1825511458}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &145181832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145181829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d15e30aa1d28a746a294b0baca70203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.5
+  shakeMagnitude: 0.1
 --- !u!1 &171959834
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +639,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.1, y: 2.12, z: -10}
+  m_LocalPosition: {x: 1.49, y: -1.86, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18327,17 +18342,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2907175253761737970, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860309681188975105, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 145181832}
+    - target: {fileID: 6882135391787697776, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
+      propertyPath: dashForce
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050521830415123746, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7803406472590114572, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8378839621557132336, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.1
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: 8378839621557132336, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.12
+      value: -1.86
       objectReference: {fileID: 0}
     - target: {fileID: 8378839621557132336, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
       propertyPath: m_LocalPosition.z

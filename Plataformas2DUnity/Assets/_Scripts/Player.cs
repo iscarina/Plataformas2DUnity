@@ -17,6 +17,14 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask queEsDaniable;
     [SerializeField] private float danioAtaque;
 
+    [Header("Sistema Dash")]
+    private bool canDash = true;
+    private bool isDashing;
+    [SerializeField] private float dashingPower = 24f;
+    [SerializeField] private float dashingTime = 0.2f;
+    [SerializeField] private float dashingCooldown = 1f;
+    [SerializeField] private TrailRenderer tr;
+
 
     private Rigidbody2D rb;
     private float inputH;
@@ -31,9 +39,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
+
         Movement();
         Jump();
         LanzarAtaque();
+        StartCoroutine(Dash());
     }
 
     void Movement()
@@ -90,6 +104,25 @@ public class Player : MonoBehaviour
         {
             SistemaVidas sistemaVidas = c.gameObject.GetComponent<SistemaVidas>();
             sistemaVidas.RecibirDanio(danioAtaque);
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        if ( Input.GetMouseButtonDown(1) && canDash)
+        {
+            canDash = false;
+            isDashing = true;
+            float originalGravity = rb.gravityScale;
+            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(transform.right.x * dashingPower, 0f);
+            tr.emitting = true;
+            yield return new WaitForSeconds(dashingTime);
+            tr.emitting = false;
+            rb.gravityScale = originalGravity;
+            isDashing = false;
+            yield return new WaitForSeconds(dashingCooldown);
+            canDash = true;
         }
     }
 
