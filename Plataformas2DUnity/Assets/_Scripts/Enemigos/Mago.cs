@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mago : MonoBehaviour
+public class Mago : Enemigo
 {
 
     [SerializeField] private GameObject bolaFuego;
     [SerializeField] private Transform puntoSpawn;
     [SerializeField] private float tiempoAtaques;
-    [SerializeField] private float danioAtaque;
 
     private Animator anim;
 
-    // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         anim = GetComponent<Animator>();
         StartCoroutine(RutinaAtaque());
     }
@@ -33,4 +32,8 @@ public class Mago : MonoBehaviour
         Instantiate(bolaFuego, puntoSpawn.position, transform.rotation);
     }
 
+    protected override void Perseguir()
+    {
+        throw new System.NotImplementedException();
+    }
 }

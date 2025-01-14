@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7949966311083082408}
   - component: {fileID: 419261259073134648}
   - component: {fileID: 4512844312321980867}
-  - component: {fileID: 8885754717295368036}
   - component: {fileID: 1514179324987037840}
   m_Layer: 6
   m_Name: Murcielago
@@ -164,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad845fd0cc2eff4993947262b2114f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidas: 40
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -173,20 +173,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   speedPatrol: 5
-  danioAtaque: 0
---- !u!114 &8885754717295368036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879798075822009175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32062160e66d3d40a3216841f1e1bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidas: 40
+  danioAtaque: 15
 --- !u!95 &1514179324987037840
 Animator:
   serializedVersion: 5

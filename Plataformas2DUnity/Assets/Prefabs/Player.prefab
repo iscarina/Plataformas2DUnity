@@ -285,7 +285,6 @@ GameObject:
   - component: {fileID: 8378839621557132336}
   - component: {fileID: 2214090993366244099}
   - component: {fileID: 6882135391787697776}
-  - component: {fileID: 3860309681188975105}
   - component: {fileID: 794749290107623058}
   - component: {fileID: 7201764747267222948}
   - component: {fileID: 4312686877873931122}
@@ -379,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c469ca70cfd3dc04a9e20353cde65b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 100
   speed: 10
   jumpSpeed: 25
   queEsSaltable:
@@ -396,19 +396,6 @@ MonoBehaviour:
   dashingTime: 0.2
   dashingCooldown: 0.5
   tr: {fileID: 7050521830415123746}
---- !u!114 &3860309681188975105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7803406472590114572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32062160e66d3d40a3216841f1e1bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidas: 100
 --- !u!95 &794749290107623058
 Animator:
   serializedVersion: 5

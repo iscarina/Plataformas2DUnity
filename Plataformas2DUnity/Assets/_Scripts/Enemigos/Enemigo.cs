@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Murcielago : MonoBehaviour
+public abstract class Enemigo : MonoBehaviour
 {
+
+    [SerializeField] private float vidas;
+    private SpriteRenderer spriteRenderer;
+
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private float speedPatrol;
     [SerializeField] private float danioAtaque;
@@ -11,15 +15,14 @@ public class Murcielago : MonoBehaviour
     private Vector3 destinoActual;
     private int indiceActual = 0;
 
-    void Start()
+    protected void Start()
     {
-        destinoActual = waypoints[indiceActual].position;
-        StartCoroutine(Patrol());
-    }
-
-    void Update()
-    {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (waypoints.Length > 0)
+        {
+            destinoActual = waypoints[indiceActual].position;
+            StartCoroutine(Patrol());
+        }
     }
 
     IEnumerator Patrol()
@@ -63,13 +66,37 @@ public class Murcielago : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerDetection"))
         {
-
+            Perseguir();
         }
         else if (collision.gameObject.CompareTag("PlayerHitBox"))
         {
-            SistemaVidas sistemaVidasPlayer = collision.gameObject.GetComponent<SistemaVidas>();
-            sistemaVidasPlayer.RecibirDanio(danioAtaque);
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.RecibirDanio(danioAtaque);
+            CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+            if (cameraShake != null)
+            {
+                cameraShake.TriggerShake(100f);
+            }
         }
     }
+
+    public void TakeDamage(float danioRecibido)
+    {
+        vidas -= danioRecibido;
+        StartCoroutine(FlashRed());
+        if (vidas <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = Color.white;
+    }
+
+    protected abstract void Perseguir();
 
 }

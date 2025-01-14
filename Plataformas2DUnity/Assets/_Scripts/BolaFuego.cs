@@ -7,10 +7,21 @@ public class BolaFuego : MonoBehaviour
 
     Rigidbody2D rb;
     [SerializeField] private float impulsoDisparo;
+    [SerializeField] private float danioAtaque;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * impulsoDisparo, ForceMode2D.Impulse);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerHitBox"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.RecibirDanio(danioAtaque);
+            Destroy(this.gameObject);
+        }
+    }
+
 }

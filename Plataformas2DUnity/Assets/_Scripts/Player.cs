@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    [Header("Otros elementos")]
+    [SerializeField] private float vida;
+
     [Header("Sistema Movimiento")]
     [SerializeField] private float speed;
     [SerializeField] private float jumpSpeed;
@@ -25,7 +29,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
 
-
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private float inputH;
 
@@ -33,6 +37,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -102,8 +107,10 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D c in collidersTocados)
         {
-            SistemaVidas sistemaVidas = c.gameObject.GetComponent<SistemaVidas>();
-            sistemaVidas.RecibirDanio(danioAtaque);
+            Enemigo e = c.gameObject.GetComponent<Enemigo>();
+            e.TakeDamage(danioAtaque);
+            //SistemaVidas sistemaVidas = c.gameObject.GetComponent<SistemaVidas>();
+            //sistemaVidas.RecibirDanio(danioAtaque);
         }
     }
 
@@ -130,5 +137,23 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawSphere(puntoAtaque.position, radioAtaque);
     }
+
+    public void RecibirDanio(float danioRecibido)
+    {
+        vida -= danioRecibido;
+        StartCoroutine(FlashRed());
+        if (vida <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = Color.white;
+    }
+
 
 }

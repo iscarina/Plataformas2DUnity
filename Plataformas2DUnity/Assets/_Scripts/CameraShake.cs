@@ -1,42 +1,59 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public float shakeDuration = 0.5f;  // Duración del temblor de la cámara
-    public float shakeMagnitude = 0.1f; // Magnitud del temblor
+    //private Vector3 originalPosition;
 
-    private Vector3 originalPos;  // Posición original de la cámara
+    //private void Awake()
+    //{
+    //    // Guardamos la posición inicial de la cámara
+    //    originalPosition = transform.localPosition;
+    //}
 
-    void Start()
+    //public IEnumerator Shake(float duration, float magnitude)
+    //{
+    //    Debug.Log("caca");
+    //    float elapsed = 0f;
+
+    //    while (elapsed < duration)
+    //    {
+    //        float offsetX = Random.Range(-1f, 1f) * magnitude;
+    //        float offsetY = Random.Range(-1f, 1f) * magnitude;
+
+    //        // Modificar la posición local para el efecto de shake
+    //        transform.localPosition = new Vector3(originalPosition.x + offsetX, originalPosition.y + offsetY, originalPosition.z);
+
+    //        elapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
+
+    //    // Restaurar la posición original de la cámara
+    //    transform.localPosition = originalPosition;
+    //}
+    private CinemachineImpulseSource impulseSource;
+
+    private void Awake()
     {
-        originalPos = transform.position;  // Guarda la posición original de la cámara
-    }
-
-    // Método para hacer temblar la cámara
-    public void ShakeCamera()
-    {
-        StartCoroutine(Shake());
-    }
-
-    private IEnumerator Shake()
-    {
-        float elapsed = 0f;
-
-        while (elapsed < shakeDuration)
+        // Obtén la referencia al componente CinemachineImpulseSource
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+        if (impulseSource == null)
         {
-            // Calcula un desplazamiento aleatorio dentro del rango especificado
-            float x = Random.Range(-1f, 1f) * shakeMagnitude;
-            float y = Random.Range(-1f, 1f) * shakeMagnitude;
-
-            transform.position = new Vector3(originalPos.x + x, originalPos.y + y, originalPos.z);
-
-            elapsed += Time.deltaTime;
-            yield return null;
+            Debug.LogError("No se encontró CinemachineImpulseSource en el GameObject.");
         }
-
-        // Restaura la posición original de la cámara después del temblor
-        transform.position = originalPos;
     }
+
+    public void TriggerShake(float intensity)
+    {
+        // Genera un impulso con la intensidad dada
+        if (impulseSource != null)
+        {
+            Debug.Log("dasda");
+            impulseSource.GenerateImpulse(0.2f);
+        }
+    }
+
+
 }

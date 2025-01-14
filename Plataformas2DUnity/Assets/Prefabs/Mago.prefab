@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4198236327903802400}
   - component: {fileID: 6101369791675358839}
   - component: {fileID: 7455209967480858765}
-  - component: {fileID: 8819602596770022536}
   - component: {fileID: 3924940866849560366}
   - component: {fileID: 208919621104684249}
   - component: {fileID: 3280160071082383501}
@@ -103,23 +102,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfae1acd518fad246aaf96040dbfc235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidas: 80
+  waypoints: []
+  speedPatrol: 0
+  danioAtaque: 20
   bolaFuego: {fileID: 8835263536479846816, guid: 8821d3114cc6070459ee3fb80e86f64c, type: 3}
   puntoSpawn: {fileID: 8742702074886673024}
   tiempoAtaques: 2
   danioAtaque: 20
---- !u!114 &8819602596770022536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713351297199747077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32062160e66d3d40a3216841f1e1bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vidas: 80
 --- !u!95 &3924940866849560366
 Animator:
   serializedVersion: 5
