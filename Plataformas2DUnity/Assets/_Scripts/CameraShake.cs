@@ -50,7 +50,6 @@ public class CameraShake : MonoBehaviour
         // Genera un impulso con la intensidad dada
         if (impulseSource != null)
         {
-            Debug.Log("dasda");
             impulseSource.GenerateImpulse(0.2f);
         }
     }
