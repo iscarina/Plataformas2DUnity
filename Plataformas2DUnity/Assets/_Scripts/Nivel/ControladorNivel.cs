@@ -16,15 +16,13 @@ public class ControladorNivel : MonoBehaviour
     public void CompletarNivel()
     {
         nivelCompletado = true;
-        AdministradorNiveles administrador = FindObjectOfType<AdministradorNiveles>();
-        administrador.CompletarNivel(tiempoActual);
+        AdministradorNiveles.Instance.CompletarNivel(tiempoActual);
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MenuNiveles");
     }
 
     public void RecogerAbanico(int abanicoindex)
     {
-        AdministradorNiveles administrador = FindObjectOfType<AdministradorNiveles>();
-        administrador.RecogerAbanico(abanicoindex);
+        AdministradorNiveles.Instance.RecogerAbanico(abanicoindex);
     }
 }

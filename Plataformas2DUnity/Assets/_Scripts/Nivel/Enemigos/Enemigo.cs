@@ -75,7 +75,7 @@ public abstract class Enemigo : MonoBehaviour
             CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
             if (cameraShake != null)
             {
-                cameraShake.TriggerShake(100f);
+                cameraShake.TriggerShake();
             }
         }
     }

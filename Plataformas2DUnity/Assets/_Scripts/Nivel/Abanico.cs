@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Estrella : MonoBehaviour
+public class Abanico : MonoBehaviour
 {
     [SerializeField] private int abanicoIndex;
 

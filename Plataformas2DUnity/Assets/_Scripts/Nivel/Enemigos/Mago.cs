@@ -34,6 +34,5 @@ public class Mago : Enemigo
 
     protected override void Perseguir()
     {
-        throw new System.NotImplementedException();
     }
 }

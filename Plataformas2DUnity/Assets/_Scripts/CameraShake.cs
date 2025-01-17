@@ -45,7 +45,7 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    public void TriggerShake(float intensity)
+    public void TriggerShake()
     {
         // Genera un impulso con la intensidad dada
         if (impulseSource != null)

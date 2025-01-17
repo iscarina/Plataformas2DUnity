@@ -7,5 +7,4 @@ public class Slime : Enemigo
     protected override void Perseguir()
     {
     }
-
 }

@@ -7,11 +7,8 @@ public class MenuNiveles : MonoBehaviour
 {
     [SerializeField] private GameObject[] nivelesGO; // Array con los GameObjects de los niveles
 
-    private AdministradorNiveles administrador;
-
     void Start()
     {
-        administrador = FindObjectOfType<AdministradorNiveles>();
         ActualizarInterfaz();
     }
 
@@ -19,9 +16,9 @@ public class MenuNiveles : MonoBehaviour
     {
         for (int i = 0; i < nivelesGO.Length; i++)
         {
-            if (i >= administrador.niveles.Count) continue;
+            if (i >= AdministradorNiveles.Instance.niveles.Count) continue;
 
-            Nivel nivel = administrador.niveles[i];
+            Nivel nivel = AdministradorNiveles.Instance.niveles[i];
             GameObject nivelGO = nivelesGO[i];
 
             // Configurar botón
@@ -47,7 +44,7 @@ public class MenuNiveles : MonoBehaviour
 
     public void SeleccionarNivel(int index)
     {
-        administrador.nivelActual = index;
-        SceneManager.LoadScene(administrador.niveles[index].nombreNivel);
+        AdministradorNiveles.Instance.nivelActual = index;
+        SceneManager.LoadScene(AdministradorNiveles.Instance.niveles[index].nombreNivel);
     }
 }

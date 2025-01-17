@@ -379,8 +379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 100
-  speed: 10
-  jumpSpeed: 25
+  speed: 8
+  jumpSpeed: 27
   queEsSaltable:
     serializedVersion: 2
     m_Bits: 256

@@ -16,9 +16,20 @@ public class AdministradorNiveles : MonoBehaviour
     public List<Nivel> niveles;
     public int nivelActual;
 
+    public static AdministradorNiveles Instance;
+
     void Awake()
     {
-        //CargarProgreso();
+        if (Instance == null)
+        {
+            Instance = this; // Asignar esta instancia
+            DontDestroyOnLoad(gameObject); // No destruir al cambiar de escena
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject); // Destruir esta instancia duplicada
+        }
+        CargarProgreso();
         DontDestroyOnLoad(gameObject);
     }
 

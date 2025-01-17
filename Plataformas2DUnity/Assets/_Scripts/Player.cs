@@ -107,10 +107,18 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D c in collidersTocados)
         {
-            Enemigo e = c.gameObject.GetComponent<Enemigo>();
-            e.TakeDamage(danioAtaque);
-            //SistemaVidas sistemaVidas = c.gameObject.GetComponent<SistemaVidas>();
-            //sistemaVidas.RecibirDanio(danioAtaque);
+            
+            if (c.CompareTag("BOSS"))
+            {
+                Boss1 boss = c.gameObject.GetComponent<Boss1>();
+                boss.RecibirDanio(danioAtaque);
+            }
+            else
+            {
+                Enemigo e = c.gameObject.GetComponent<Enemigo>();
+                e.TakeDamage(danioAtaque);
+            }
+            
         }
     }
 
@@ -121,12 +129,14 @@ public class Player : MonoBehaviour
             canDash = false;
             isDashing = true;
             float originalGravity = rb.gravityScale;
+            gameObject.GetComponent<Collider2D>().enabled = false;
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(transform.right.x * dashingPower, 0f);
             tr.emitting = true;
             yield return new WaitForSeconds(dashingTime);
             tr.emitting = false;
             rb.gravityScale = originalGravity;
+            gameObject.GetComponent<Collider2D>().enabled = true;
             isDashing = false;
             yield return new WaitForSeconds(dashingCooldown);
             canDash = true;
