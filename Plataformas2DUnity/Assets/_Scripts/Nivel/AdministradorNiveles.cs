@@ -7,7 +7,7 @@ public class Nivel
 {
     public string nombreNivel;
     public bool desbloqueado;
-    public bool[] abanicosRecogidos; // Indica qué estrellas se han recogido en este nivel
+    public bool[] abanicosRecogidos;
     public float mejorTiempo;
 }
 
@@ -24,13 +24,12 @@ public class AdministradorNiveles : MonoBehaviour
         {
             Instance = this; // Asignar esta instancia
             DontDestroyOnLoad(gameObject); // No destruir al cambiar de escena
+            CargarProgreso();
         }
         else if (Instance != this)
         {
             Destroy(gameObject); // Destruir esta instancia duplicada
         }
-        CargarProgreso();
-        DontDestroyOnLoad(gameObject);
     }
 
     public void CompletarNivel(float tiempo)
@@ -48,7 +47,6 @@ public class AdministradorNiveles : MonoBehaviour
 
     public void RecogerAbanico(int abanicoIndex)
     {
-        Debug.Log(abanicoIndex);
         niveles[nivelActual].abanicosRecogidos[abanicoIndex] = true;
         GuardarProgreso();
     }

@@ -105,10 +105,10 @@ MonoBehaviour:
   vidas: 80
   waypoints: []
   speedPatrol: 0
-  danioAtaque: 20
+  perseguir: 0
   bolaFuego: {fileID: 8835263536479846816, guid: 8821d3114cc6070459ee3fb80e86f64c, type: 3}
   puntoSpawn: {fileID: 8742702074886673024}
-  tiempoAtaques: 2
+  tiempoAtaques: 3.5
   danioAtaque: 20
 --- !u!95 &3924940866849560366
 Animator:
@@ -212,6 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2475614634485080018}
+  - component: {fileID: 7798637277203258473}
   m_Layer: 7
   m_Name: Detection
   m_TagString: Untagged
@@ -234,6 +235,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4198236327903802400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &7798637277203258473
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172699374344060427}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 15
 --- !u!1 &7766226215476080397
 GameObject:
   m_ObjectHideFlags: 0

@@ -172,7 +172,8 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  speedPatrol: 5
+  speedPatrol: 3
+  perseguir: 0
   danioAtaque: 10
 --- !u!58 &9168966570310014045
 CircleCollider2D:

@@ -18,7 +18,7 @@ public class HabilidadManoBOSS : MonoBehaviour
     public void Golpe()
     {
         Collider2D[] objetos = Physics2D.OverlapBoxAll(posicionCaja.position, dimensionesCaja, 0f);
-
+        AudioManager.Instance.PlaySFX(AudioManager.SOUNDS[AudioManager.SOUNDS_ENUM.BossMano]);
         foreach (Collider2D c in objetos)
         {
             if (c.CompareTag("PlayerHitBox"))

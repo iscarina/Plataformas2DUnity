@@ -9,11 +9,11 @@ public abstract class Enemigo : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private Transform[] waypoints;
-    [SerializeField] private float speedPatrol;
-    [SerializeField] private float danioAtaque;
+    [SerializeField] protected float speedPatrol;
 
     private Vector3 destinoActual;
     private int indiceActual = 0;
+    public bool perseguir = false;
 
     protected void Start()
     {
@@ -25,9 +25,9 @@ public abstract class Enemigo : MonoBehaviour
         }
     }
 
-    IEnumerator Patrol()
+    protected IEnumerator Patrol()
     {
-        while (true)
+        while (!perseguir)
         {
             while (transform.position != waypoints[indiceActual].position)
             {
@@ -62,27 +62,10 @@ public abstract class Enemigo : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("PlayerDetection"))
-        {
-            Perseguir();
-        }
-        else if (collision.gameObject.CompareTag("PlayerHitBox"))
-        {
-            Player player = collision.gameObject.GetComponent<Player>();
-            player.RecibirDanio(danioAtaque);
-            CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
-            if (cameraShake != null)
-            {
-                cameraShake.TriggerShake();
-            }
-        }
-    }
-
     public void TakeDamage(float danioRecibido)
     {
         vidas -= danioRecibido;
+        AudioManager.Instance.PlaySFX(AudioManager.SOUNDS[AudioManager.SOUNDS_ENUM.HitEnemy]);
         StartCoroutine(FlashRed());
         if (vidas <= 0)
         {
@@ -96,7 +79,5 @@ public abstract class Enemigo : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         spriteRenderer.color = Color.white;
     }
-
-    protected abstract void Perseguir();
 
 }

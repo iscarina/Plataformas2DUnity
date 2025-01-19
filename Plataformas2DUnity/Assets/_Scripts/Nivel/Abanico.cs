@@ -8,10 +8,8 @@ public class Abanico : MonoBehaviour
     {
         if (collision.CompareTag("PlayerHitBox"))
         {
-            ControladorNivel controlador = FindObjectOfType<ControladorNivel>();
-            Debug.Log(abanicoIndex);
-            controlador.RecogerAbanico(abanicoIndex);
-
+            ControladorNivel.Instance.RecogerAbanico(abanicoIndex);
+            AudioManager.Instance.PlaySFX(AudioManager.SOUNDS[AudioManager.SOUNDS_ENUM.Abanico]);
             Destroy(gameObject);
         }
     }

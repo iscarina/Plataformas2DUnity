@@ -13,6 +13,7 @@ public class BolaFuego : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * impulsoDisparo, ForceMode2D.Impulse);
+        Destroy(this.gameObject, 1.5f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -4,28 +4,56 @@ using UnityEngine;
 
 public class Murcielago : Enemigo
 {
+    private Transform player;
 
-    public float speed = 3.0f; // Velocidad de movimiento del enemigo.
-    public float stopDistance = 2.0f; // Distancia mínima para dejar de acercarse.
+    [SerializeField] private float danioAtaque;
 
-    protected override void Perseguir()
+    private new void Start()
     {
-            Transform player = GameObject.FindGameObjectWithTag("PlayerHitBox").transform;
-            // Calcula la distancia entre el enemigo y el jugador
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-            // Si está fuera del rango de "stopDistance", sigue al jugador
-            if (distanceToPlayer > stopDistance)
-            {
-                // Dirección hacia el jugador
-                Vector3 direction = (player.position - transform.position).normalized;
-
-                // Mueve al enemigo en esa dirección
-                transform.position += direction * speed * Time.deltaTime;
-
-                // Opcional: hacer que el enemigo mire hacia el jugador
-                transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
-            }
-        
+        base.Start();
+        player = GameObject.FindGameObjectWithTag("PlayerHitBox").GetComponent<Transform>();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerDetection"))
+        {
+            perseguir = true;
+            StartCoroutine(Perseguir());
+        }
+        else if (collision.gameObject.CompareTag("PlayerHitBox"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            player.RecibirDanio(danioAtaque);
+            CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+            if (cameraShake != null)
+            {
+                cameraShake.TriggerShake();
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerDetection"))
+        {
+            perseguir = false;
+            StartCoroutine(Patrol());
+        }
+    }
+
+    private IEnumerator Perseguir()
+    {
+
+        while (perseguir)
+        {
+           Vector3 direction = (player.position - transform.position).normalized;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            rb.MovePosition(rb.position + (Vector2)direction * 40f * Time.deltaTime);
+
+            yield return null;
+        }
+
+    }
+
 }

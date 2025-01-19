@@ -354,7 +354,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: -618108969, guid: b50a84fd1cdd5b247a73fa0cfd2f3a20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -378,7 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c469ca70cfd3dc04a9e20353cde65b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 100
+  vida: 250
+  lifeTMP: {fileID: 0}
   speed: 8
   jumpSpeed: 27
   queEsSaltable:
@@ -396,6 +397,7 @@ MonoBehaviour:
   dashingTime: 0.2
   dashingCooldown: 0.5
   tr: {fileID: 7050521830415123746}
+  GameOver: {fileID: 0}
 --- !u!95 &794749290107623058
 Animator:
   serializedVersion: 5
@@ -473,7 +475,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.085995466, y: -0.10034293}

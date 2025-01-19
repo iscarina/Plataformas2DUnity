@@ -7,8 +7,19 @@ public class MenuNiveles : MonoBehaviour
 {
     [SerializeField] private GameObject[] nivelesGO; // Array con los GameObjects de los niveles
 
+    [Header("Audio")]
+    [SerializeField] private Sprite muteSprite;
+    [SerializeField] private Sprite unmuteSprite;
+    [SerializeField] private Button ButtonSound;
+    private AudioSource[] audioSources;
+    private bool isMuted = false;
+
     void Start()
     {
+        audioSources = FindObjectsOfType<AudioSource>();
+        ButtonSound.onClick.AddListener(Volume);
+
+        UpdateVolumeSprite();
         ActualizarInterfaz();
     }
 
@@ -47,4 +58,27 @@ public class MenuNiveles : MonoBehaviour
         AdministradorNiveles.Instance.nivelActual = index;
         SceneManager.LoadScene(AdministradorNiveles.Instance.niveles[index].nombreNivel);
     }
+
+    public void Volume()
+    {
+        isMuted = !isMuted;
+
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.mute = isMuted;
+        }
+
+        UpdateVolumeSprite();
+    }
+
+    private void UpdateVolumeSprite()
+    {
+        ButtonSound.image.sprite = isMuted ? muteSprite : unmuteSprite;
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }

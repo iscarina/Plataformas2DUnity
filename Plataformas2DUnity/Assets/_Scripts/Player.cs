@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,6 +8,7 @@ public class Player : MonoBehaviour
 
     [Header("Otros elementos")]
     [SerializeField] private float vida;
+    [SerializeField] private TextMeshProUGUI lifeTMP;
 
     [Header("Sistema Movimiento")]
     [SerializeField] private float speed;
@@ -29,6 +31,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
 
+
+    [SerializeField] private GameObject GameOver;
+
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private float inputH;
@@ -37,6 +42,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        lifeTMP.text = "Life: " + vida;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -96,6 +103,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            AudioManager.Instance.PlaySFX(AudioManager.SOUNDS[AudioManager.SOUNDS_ENUM.Latigo]);
             anim.SetTrigger("attack");
         }
     }
@@ -126,6 +134,7 @@ public class Player : MonoBehaviour
     {
         if ( Input.GetMouseButtonDown(1) && canDash)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.SOUNDS[AudioManager.SOUNDS_ENUM.Dash]);
             canDash = false;
             isDashing = true;
             float originalGravity = rb.gravityScale;
@@ -151,10 +160,13 @@ public class Player : MonoBehaviour
     public void RecibirDanio(float danioRecibido)
     {
         vida -= danioRecibido;
+        lifeTMP.text = "Life: " + vida;
+        AudioManager.Instance.PlaySFX(AudioManager.SOUNDS[AudioManager.SOUNDS_ENUM.HitPlayer]);
         StartCoroutine(FlashRed());
         if (vida <= 0)
         {
             Destroy(this.gameObject);
+            GameOver.SetActive(true);
         }
     }
 

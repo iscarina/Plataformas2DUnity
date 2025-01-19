@@ -18,6 +18,8 @@ public class Boss1 : MonoBehaviour
     [SerializeField] private float radioAtaque;
     [SerializeField] private float danioAtaque;
 
+    [SerializeField] private GameObject Fin;
+
     private SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -37,9 +39,11 @@ public class Boss1 : MonoBehaviour
     public void RecibirDanio(float danio)
     {
         vida -= danio;
+        AudioManager.Instance.PlaySFX(AudioManager.SOUNDS[AudioManager.SOUNDS_ENUM.HitEnemy]);
         if (vida <= 0)
         {
             anim.SetTrigger("Muerte");
+            Fin.SetActive(true);
         }
         else
         {
@@ -71,7 +75,7 @@ public class Boss1 : MonoBehaviour
     public void Ataque()
     {
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorAtaque.position, radioAtaque);
-
+        AudioManager.Instance.PlaySFX(AudioManager.SOUNDS[AudioManager.SOUNDS_ENUM.BossAtt]);
         foreach (Collider2D c in objetos)
         {
             if (c.CompareTag("PlayerHitBox"))
