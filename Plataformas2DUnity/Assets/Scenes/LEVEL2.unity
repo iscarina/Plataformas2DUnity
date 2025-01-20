@@ -1976,7 +1976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6882135391787697776, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
       propertyPath: vida
-      value: 100
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 6882135391787697776, guid: 96a580008a8b5ba49be95e1cb73c4f25, type: 3}
       propertyPath: lifeTMP
