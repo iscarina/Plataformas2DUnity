@@ -49,7 +49,7 @@ public class Murcielago : Enemigo
         {
            Vector3 direction = (player.position - transform.position).normalized;
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.MovePosition(rb.position + (Vector2)direction * 40f * Time.deltaTime);
+            rb.MovePosition(rb.position + (Vector2)direction * speedPatrol * Time.deltaTime);
 
             yield return null;
         }
